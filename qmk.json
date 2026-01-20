@@ -1,4 +1,11 @@
 {
-    "userspace_version": "1.0",
-    "build_targets": []
+    "userspace_version": "1.1",
+    "build_targets": [
+        ["vertex/arc60h", "mitsuruu"],
+        ["hhkb/classic", "mitsuruu"],
+        ["binepad/bn009/r2", "mitsuruu"],
+        ["gray_studio/space65r3", "mitsuruu"],
+        ["kikkou", "mitsuruu"],
+        ["meletrix/zoom65", "mitsuruu"]
+    ]
 }
