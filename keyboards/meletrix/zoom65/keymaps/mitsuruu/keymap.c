@@ -20,7 +20,7 @@
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_all(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_NUBS, KC_DEL,   KC_VOLD, KC_MUTE, KC_VOLU,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_NUBS, KC_DEL,  KC_MUTE,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSPC, KC_PGUP,
         KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,  KC_PGDN,
         KC_LSFT, KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, KC_UP,   KC_GRV,
@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FN] = LAYOUT_all(
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, _______,   _______, _______, _______,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PSCR, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT,
@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_LM] = LAYOUT_all(
-        _______, _______, _______, _______, KC_F4,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______,
+        _______, _______, _______, _______, KC_F4,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -44,33 +44,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 // clang-format on
-
-static uint8_t  encoder_state[ENCODERS] = {0};
-static keypos_t encoder_cw[ENCODERS]    = ENCODERS_CW_KEY;
-static keypos_t encoder_ccw[ENCODERS]   = ENCODERS_CCW_KEY;
-
-void encoder_action_unregister(void) {
-    for (int index = 0; index < ENCODERS; ++index) {
-        if (encoder_state[index]) {
-            keyevent_t encoder_event = (keyevent_t){.key = encoder_state[index] >> 1 ? encoder_cw[index] : encoder_ccw[index], .pressed = false, .time = (timer_read() | 1)};
-            encoder_state[index]     = 0;
-            action_exec(encoder_event);
-        }
-    }
-}
-void encoder_action_register(uint8_t index, bool clockwise) {
-    keyevent_t encoder_event = (keyevent_t){.key = clockwise ? encoder_cw[index] : encoder_ccw[index], .pressed = true, .time = (timer_read() | 1)};
-    encoder_state[index]     = (clockwise ^ 1) | (clockwise << 1);
-    action_exec(encoder_event);
-}
-
-void matrix_scan_kb(void) {
-    encoder_action_unregister();
-    matrix_scan_user();
-}
-
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    encoder_action_register(index, clockwise);
-    /* Return false in order to prevent the zoom65.c encoder update being used */
-    return false;
-};
