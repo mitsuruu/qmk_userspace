@@ -1,0 +1,10 @@
+LTO_ENABLE = yes
+
+
+# Enable LAYMAN feature
+LAYMAN_ENABLE = yes
+LAYMAN_WINDOWS = yes
+LAYMAN_MAC = yes
+LAYMAN_LINUX = yes
+
+CUSTOM_MACROS = yes
