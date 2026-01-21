@@ -14,7 +14,7 @@
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {
         name = "qmk";
-        packages = [pkgs.qmk];
+        packages = [pkgs.qmk pkgs.dos2unix];
       };
     });
   };
