@@ -2,6 +2,7 @@
     "userspace_version": "1.1",
     "build_targets": [
         ["vertex/arc60h", "mitsuruu"],
+        ["vertex/arc60_uf2", "mitsuruu"],
         ["hhkb/classic", "mitsuruu"],
         ["binepad/bn009/r2", "mitsuruu"],
         ["gray_studio/space65r3", "mitsuruu"],
