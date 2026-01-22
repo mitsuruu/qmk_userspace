@@ -35,10 +35,6 @@
 #    define HH_BSPC HHKB_BACKSPACE
 #endif
 
-#if defined(SECRETS_ENABLE)
-#    include "secrets/secrets.h"
-#endif
-
 enum layers { _BASE = 0, _FN, _FN_ALT, _ADJUST, _LM };
 
 enum userspace_keycodes {
@@ -54,11 +50,6 @@ enum userspace_keycodes {
     EXT_F10,
     EXT_F11,
     EXT_F12,
-    SECRET1,
-    SECRET2,
-    SECRET3,
-    SECRET4,
-    SECRET5,
 #if defined(HHKB_ENABLE)
     HHKB_BACKSPACE,
 #endif
