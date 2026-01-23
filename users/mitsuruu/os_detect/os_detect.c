@@ -20,6 +20,8 @@ bool process_detected_host_os_user(os_variant_t detected_os) {
         case OS_WINDOWS:
         case OS_LINUX:
         case OS_UNSURE:
+            keymap_config.swap_lalt_lgui = false;
+            keymap_config.swap_ralt_rgui = false;
             break;
     }
 
