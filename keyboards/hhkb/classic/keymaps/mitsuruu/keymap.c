@@ -42,17 +42,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 // clang-format on
-
-bool dip_switch_update_mask_keymap(uint32_t state) {
-    eeconfig_read_keymap(&keymap_config);
-
-    /* ALT and GUI are swapped in keymap to allow the LM_LALT macro to work
-     * so we need to invert SW5 here so that it still functions the same without
-     * breaking forcing LM_LALT to act as a regular KC_LALT.
-     */
-    keymap_config.swap_lalt_lgui = keymap_config.swap_ralt_rgui = !keymap_config.swap_lalt_lgui;
-
-    eeconfig_update_keymap(&keymap_config);
-    clear_keyboard();
-    return true;
-}
