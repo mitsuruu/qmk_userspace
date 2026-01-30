@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "os_detection.h"
 #include "quantum.h"
 #include "hhkb.h"
 #include "mitsuruu.h"
@@ -45,6 +46,9 @@ bool dip_switch_update_mask_user(uint32_t state) {
 }
 
 bool process_record_hhkb(uint16_t keycode, keyrecord_t *record) {
+#if OS_DETECTION_ENABLE
+    os_variant_t current_os = detected_host_os();
+#endif
     switch (keycode) {
         case HHKB_BACKSPACE:
             // SW3 - Swap backspace and delete
@@ -61,16 +65,23 @@ bool process_record_hhkb(uint16_t keycode, keyrecord_t *record) {
                     unregister_code(KC_DELETE);
                 }
             }
+            return true;
 
-        // Layout differences
-        case KC_PWR:
+        case KC_SLEP:
+#if OS_DETECTION_ENABLE
+            if (current_os == OS_MACOS || current_os == OS_IOS) {
+                return true;
+            }
+#endif
             if (hhkb_dip_switch_config.layout != MAC) {
+                uint16_t fallthrough = keymap_key_to_keycode(biton32(default_layer_state), record->event.key);
                 if (record->event.pressed) {
-                    register_code(KC_TRNS);
+                    register_code(fallthrough);
+                    return false;
                 } else {
-                    unregister_code(KC_TRNS);
+                    unregister_code(fallthrough);
+                    return false;
                 }
-                return false;
             }
             return true;
 
