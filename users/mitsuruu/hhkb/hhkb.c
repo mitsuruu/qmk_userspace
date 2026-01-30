@@ -34,7 +34,9 @@ bool dip_switch_update_mask_user(uint32_t state) {
     // SW5 - Swap GUI and ALT keys -- This option is ignored when running in Mac mode.
     // NOTE: This dipswitch breaks support for LM(LAYER, MOD_LALT) keybinds unless you
     //       pre-swap them in the keymap, then invert it in dip_switch_update_mask_keymap().
-    keymap_config.swap_lalt_lgui = keymap_config.swap_ralt_rgui = hhkb_dip_switch_config.sw5;
+    if (hhkb_dip_switch_config.layout != MAC) {
+        keymap_config.swap_lalt_lgui = keymap_config.swap_ralt_rgui = hhkb_dip_switch_config.sw5;
+    }
 
     eeconfig_update_keymap(&keymap_config);
     clear_keyboard();
