@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_LGUI, LM_LALT,                            KC_SPC,                             FN,      KC_RGUI
     ),
     [_FN] = LAYOUT_60_hhkb(
-        KC_PWR,  EXT_F1,  EXT_F2,  EXT_F3,  EXT_F4,  EXT_F5,  EXT_F6,  EXT_F7,  EXT_F8,  EXT_F9,  EXT_F10, EXT_F11, EXT_F12, KC_NUHS, KC_DEL,
+        KC_SLEP, EXT_F1,  EXT_F2,  EXT_F3,  EXT_F4,  EXT_F5,  EXT_F6,  EXT_F7,  EXT_F8,  EXT_F9,  EXT_F10, EXT_F11, EXT_F12, KC_NUHS, KC_DEL,
         KC_CAPS, _______, _______, _______, _______, _______, _______, _______, KC_PSCR, KC_SCRL, KC_PAUS, KC_UP,   _______, _______,
         _______, KC_VOLD, KC_VOLU, KC_MUTE, _______, _______, KC_PAST, KC_PSLS, KC_HOME, KC_PGUP, KC_LEFT, KC_RGHT,          KC_PENT,
         _______,          KC_MPRV, KC_MNXT, _______, _______, _______, KC_PPLS, KC_PMNS, KC_END,  KC_PGDN, KC_DOWN, _______, _______,
