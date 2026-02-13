@@ -26,7 +26,6 @@ bool process_detected_host_os_user(os_variant_t detected_os) {
     }
 
     eeconfig_update_keymap(&keymap_config);
-    clear_keyboard();
 
     return true;
 }

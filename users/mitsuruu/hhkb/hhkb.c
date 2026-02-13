@@ -14,10 +14,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "os_detection.h"
 #include "quantum.h"
 #include "hhkb.h"
 #include "mitsuruu.h"
+
+#if OS_DETECTION_ENABLE
+#    include "os_detection.h"
+#endif
 
 bool dip_switch_update_mask_user(uint32_t state) {
     eeconfig_read_keymap(&keymap_config);
@@ -33,14 +36,11 @@ bool dip_switch_update_mask_user(uint32_t state) {
     }
 
     // SW5 - Swap GUI and ALT keys -- This option is ignored when running in Mac mode.
-    // NOTE: This dipswitch breaks support for LM(LAYER, MOD_LALT) keybinds unless you
-    //       pre-swap them in the keymap, then invert it in dip_switch_update_mask_keymap().
     if (hhkb_dip_switch_config.layout != MAC) {
         keymap_config.swap_lalt_lgui = keymap_config.swap_ralt_rgui = hhkb_dip_switch_config.sw5;
     }
 
     eeconfig_update_keymap(&keymap_config);
-    clear_keyboard();
 
     return dip_switch_update_mask_keymap(state);
 }
@@ -97,23 +97,22 @@ bool process_record_hhkb(uint16_t keycode, keyrecord_t *record) {
                 return true;
             }
 
+#if OS_DETECTION_ENABLE
+            if (current_os == OS_MACOS || current_os == OS_IOS) {
+                if (record->event.pressed) {
+                    register_code(KC_NUHS);
+                } else {
+                    unregister_code(KC_NUHS);
+                }
+            }
+#endif
+
             if (record->event.pressed) {
                 register_code(KC_NUHS);
             } else {
                 unregister_code(KC_NUHS);
             }
             return false;
-            // case KC_GRV:
-            //     if (hhkb_dip_switch_config.layout != MAC) {
-            //         return true;
-            //     }
-
-            //     if (record->event.pressed) {
-            //         register_code(KC_NUBS);
-            //     } else {
-            //         unregister_code(KC_NUBS);
-            //     }
-            //     return false;
     }
     return true;
 }
