@@ -5,5 +5,6 @@ in
     packages = [
       pkgs.qmk
       pkgs.dos2unix
+      pkgs.just
     ];
   }
