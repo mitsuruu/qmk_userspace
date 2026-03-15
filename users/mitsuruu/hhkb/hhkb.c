@@ -65,7 +65,7 @@ bool process_record_hhkb(uint16_t keycode, keyrecord_t *record) {
                     unregister_code(KC_DELETE);
                 }
             }
-            return true;
+            return false;
 
         case KC_SLEP:
 #if OS_DETECTION_ENABLE

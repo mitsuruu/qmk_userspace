@@ -47,7 +47,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(((temp_mod | temp_osm) & MOD_MASK_SHIFT ? KC_F13 : KC_F1) + keycode - EXT_F1);
                 set_mods(temp_mod);
             }
-            break;
+            return false;
         case KC_ESCAPE:
             if (record->event.pressed) {
                 uint8_t temp_mod = get_mods();
@@ -59,7 +59,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 set_mods(temp_mod);
             }
-            break;
+            return true;
     }
 
     return true;
