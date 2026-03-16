@@ -27,3 +27,6 @@ flash board *args: (builder "flash" board args)
 [group('util')]
 clean:
     qmk clean
+    rm *.bin
+    rm *.uf2
+    rm *.hex
