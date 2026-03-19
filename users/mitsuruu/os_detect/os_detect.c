@@ -29,3 +29,23 @@ bool process_detected_host_os_user(os_variant_t detected_os) {
 
     return true;
 }
+
+bool process_record_os_detection(uint16_t keycode, keyrecord_t *record) {
+    os_variant_t detected_os = detected_host_os();
+
+    switch (keycode) {
+        case KC_NUBS: {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+                if (record->event.pressed) {
+                    register_code(KC_BSLS);
+                } else {
+                    unregister_code(KC_BSLS);
+                }
+                return false;
+            }
+            return true;
+        }
+    }
+
+    return true;
+}

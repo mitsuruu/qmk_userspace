@@ -37,6 +37,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 #endif
 
+#if defined(OS_DETECTION_ENABLE)
+    if (!process_record_os_detection(keycode, record)) {
+        return false;
+    }
+#endif
+
     switch (keycode) {
         case EXT_F1 ... EXT_F12:
             if (!record->event.pressed) {

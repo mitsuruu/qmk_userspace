@@ -35,6 +35,10 @@
 #    define HH_BSPC HHKB_BACKSPACE
 #endif
 
+#if defined(OS_DETECTION_ENABLE)
+#    include "os_detect/os_detect.h"
+#endif
+
 enum layers { _BASE = 0, _FN, _FN_ALT, _ADJUST, _LM };
 
 enum userspace_keycodes {
