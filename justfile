@@ -8,25 +8,25 @@ default:
     @just --list --unsorted
 
 [private]
-builder goal board *args:
+qmk goal board *args:
     qmk {{ goal }} -km mitsuruu -kb {{ board }} {{ args }}
 
 [group('compile')]
-compile board *args: (builder "compile" board args)
+compile board *args: (qmk "compile" board args)
 
 [group('compile')]
-compile-db board *args: (builder "compile" board "--compiledb" args)
+compile-db board *args: (qmk "compile" board "--compiledb" args)
 
 [group('compile')]
 compile-all *args:
     qmk userspace-compile {{ args }}
 
 [group('flash')]
-flash board *args: (builder "flash" board args)
+flash board *args: (qmk "flash" board args)
 
 [group('util')]
 clean:
     qmk clean
-    rm *.bin
-    rm *.uf2
-    rm *.hex
+    find . -name '*.bin' -delete
+    find . -name '*.uf2' -delete
+    find . -name '*.hex' -delete
