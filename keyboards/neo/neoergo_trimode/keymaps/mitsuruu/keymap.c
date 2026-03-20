@@ -9,8 +9,6 @@
 #define LT_BT3 LT(0, KC_BT3)
 #define LT_2G4 LT(0, KC_2G4)
 
-#define OS_DETECTION_KEYBOARD_RESET
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
@@ -21,8 +19,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_LCTL, KC_LGUI,                            LM_LALT, KC_SPC,  KC_SPC,  FN,                                 KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_FN] = LAYOUT(
-        EE_CLR, KC_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, _______,
-        _______, KC_NXT,  LT_BT1,  LT_BT2,  LT_BT3,  LT_2G4,  _______, _______, KC_USB,  _______, _______, _______, _______, _______, _______,
+        KC_MAC,  KC_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, _______,
+        KC_WIN,  KC_NXT,  LT_BT1,  LT_BT2,  LT_BT3,  LT_2G4,  _______, _______, KC_USB,  _______, _______, _______, _______, _______, _______,
         QK_RBT,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
         QK_BOOT, _______, _______, RM_TOGG, RM_NEXT, RM_PREV, RM_HUEU, RM_HUED, RM_HUED, RM_SPDU, RM_SPDD, RM_VALU, RM_VALD, _______, _______, _______,
                  _______, _______,                            _______, KC_MPLY, KC_MPLY, _______,                            _______, _______, _______

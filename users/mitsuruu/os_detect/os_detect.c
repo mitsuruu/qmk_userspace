@@ -1,3 +1,4 @@
+#include "mitsuruu.h"
 #include "quantum.h"
 
 __attribute__((weak)) bool process_detected_host_os_keymap(os_variant_t detected_os) {
@@ -34,6 +35,13 @@ bool process_record_os_detection(uint16_t keycode, keyrecord_t *record) {
     os_variant_t detected_os = detected_host_os();
 
     switch (keycode) {
+        // Force override detected OS, useful for wireless/BT boards.
+        case KC_OS_MACOS:
+            process_detected_host_os_user(OS_MACOS);
+            return false;
+        case KC_OS_WINDOWS:
+            process_detected_host_os_user(OS_WINDOWS);
+            return false;
         case KC_NUBS: {
             if (detected_os == OS_MACOS || detected_os == OS_IOS) {
                 if (record->event.pressed) {

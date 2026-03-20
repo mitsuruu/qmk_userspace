@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include "keycodes.h"
 #include "quantum.h"
 // clang-format off
 #define FN      MO(_FN)
@@ -37,6 +38,8 @@
 
 #if defined(OS_DETECTION_ENABLE)
 #    include "os_detect/os_detect.h"
+#    define KC_MAC KC_OS_MACOS
+#    define KC_WIN KC_OS_WINDOWS
 #endif
 
 enum layers { _BASE = 0, _FN, _FN_ALT, _ADJUST, _LM };
@@ -56,6 +59,10 @@ enum userspace_keycodes {
     EXT_F12,
 #if defined(HHKB_ENABLE)
     HHKB_BACKSPACE,
+#endif
+#if defined(OS_DETECTION_ENABLE)
+    KC_OS_MACOS,
+    KC_OS_WINDOWS,
 #endif
     NEW_SAFE_RANGE
 };
