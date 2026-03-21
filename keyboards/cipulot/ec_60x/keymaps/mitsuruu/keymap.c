@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "keycodes.h"
 #include QMK_KEYBOARD_H
 #include "config.h"
 #include "mitsuruu.h"
@@ -28,14 +29,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,    KC_LGUI,  LM_LALT,            KC_SPC,                  KC_SPC,                  KC_SPC,             FN,       KC_RGUI,  KC_NO,     KC_NO),
 
     [_FN] = LAYOUT_all(
-        QK_BOOT,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,    KC_F12,   KC_NUHS,  KC_DEL,
-        KC_CAPS,  SOCDON,   SOCDOFF,  _______,  _______,  _______,  _______,  _______,  KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_UP,     _______,  _______,  _______,
-        _______,  KC_VOLD,  KC_VOLU,  KC_MUTE,  _______,  _______,  KC_PAST,  KC_PSLS,  KC_HOME,  KC_PGUP,  KC_LEFT,  KC_RIGHT,  _______,  KC_PENT,
-        _______,  _______,  KC_MPRV,  KC_MNXT,  _______,  _______,  _______,  KC_PPLS,  KC_PMNS,  KC_END,   KC_PGDN,  KC_DOWN,   _______,  _______,  _______,
-        _______,  _______,  _______,            _______,                 KC_MPLY,                 _______,            _______,   _______,  _______,  _______),
+        QK_BOOT,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_NUHS,  KC_DEL,
+        KC_CAPS,  SOCDON,   SOCDOFF,  _______,  _______,  _______,  _______,  _______,  KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_UP,    _______,  NK_TOGG,  _______,
+        _______,  KC_VOLD,  KC_VOLU,  KC_MUTE,  _______,  _______,  KC_PAST,  KC_PSLS,  KC_HOME,  KC_PGUP,  KC_LEFT,  KC_RIGHT, _______,  KC_PENT,
+        _______,  _______,  KC_MPRV,  KC_MNXT,  _______,  _______,  _______,  KC_PPLS,  KC_PMNS,  KC_END,   KC_PGDN,  KC_DOWN,  _______,  _______,  _______,
+        _______,  _______,  _______,            _______,                 KC_MPLY,                 _______,            _______,  _______,  _______,  _______),
 
     [_LM] = LAYOUT_all(
-        _______,  NK_TOGG,  _______,  _______,  KC_F4,    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  _______,  _______,  _______,  KC_F4,    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
