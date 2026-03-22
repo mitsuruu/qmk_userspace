@@ -1,3 +1,0 @@
-LTO_ENABLE = yes
-
-CUSTOM_MACROS = yes
