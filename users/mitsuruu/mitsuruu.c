@@ -63,6 +63,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return true;
+
+        case KC_GRAVE:
+#if defined(OS_DETECTION_ENABLE)
+            os_variant_t detected_os = detected_host_os();
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+                return true;
+            }
+#endif
+            if (get_mods() & MOD_MASK_SHIFT) {
+                if (record->event.pressed) {
+                    register_code(KC_NUHS);
+                } else {
+                    unregister_code(KC_NUHS);
+                }
+                return false;
+            }
+            return true;
     }
 
     return true;
