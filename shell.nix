@@ -1,10 +1,11 @@
-let
-  pkgs = import <nixpkgs> {};
-in
-  pkgs.mkShellNoCC {
-    packages = [
-      pkgs.qmk
-      pkgs.dos2unix
-      pkgs.just
-    ];
-  }
+{
+  pkgs ? import <nixpkgs> { },
+}:
+pkgs.mkShellNoCC {
+  packages = with pkgs; [
+    clang
+    dos2unix
+    just
+    qmk
+  ];
+}
