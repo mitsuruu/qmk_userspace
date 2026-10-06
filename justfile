@@ -30,3 +30,8 @@ clean:
     find . -name '*.bin' -delete
     find . -name '*.uf2' -delete
     find . -name '*.hex' -delete
+
+[group('util')]
+pull:
+    git -C "$(qmk env QMK_HOME)" pull
+    qmk git-submodule
