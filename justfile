@@ -35,3 +35,4 @@ clean:
 pull:
     git -C "$(qmk env QMK_HOME)" pull
     qmk git-submodule
+    git submodule update --init --remote modules
