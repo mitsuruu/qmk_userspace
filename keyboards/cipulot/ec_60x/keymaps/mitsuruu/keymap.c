@@ -15,8 +15,10 @@
  */
 
 #include "keycodes.h"
+#include "socd_cleaner.h"
 #include QMK_KEYBOARD_H
 #include "config.h"
+#include "ec_switch_matrix.h"
 #include "mitsuruu.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -48,3 +50,18 @@ socd_cleaner_t socd_opposing_pairs[] = {
     {{KC_W, KC_S}, SOCD_CLEANER_LAST},
     {{KC_A, KC_D}, SOCD_CLEANER_LAST},
 };
+
+static const uint16_t default_bottoming_reading[MATRIX_ROWS][MATRIX_COLS] = {
+    // clang-format off
+    { 408,  403,  530,  586,  486,  531,  524,  562,  519,  600,  546,  531,  511,  410,  455},
+    { 494,  468,  521,  574,  500,  547,  479,  562,  582,  582,  492,  552,  489,  315, 1023},
+    { 326,  519,  546,  454,  502,  602,  536,  624,  601,  612,  581,  588, 1023,  325, 1023},
+    { 347, 1023,  490,  590,  550,  562,  538,  585,  593,  584,  569,  497,  339, 1023,  388},
+    {1023,  439,  419, 1023, 1023, 1023,  328, 1023, 1023, 1023,  410,  343, 1023, 1023, 1023},
+    // clang-format on
+};
+
+void eeconfig_init_user(void) {
+    memcpy(eeprom_ec_config.bottoming_reading, default_bottoming_reading, sizeof(default_bottoming_reading));
+    eeconfig_update_kb_datablock(&eeprom_ec_config, 0, EECONFIG_KB_DATA_SIZE);
+}
