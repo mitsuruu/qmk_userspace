@@ -36,3 +36,7 @@ pull:
     git -C "$(qmk env QMK_HOME)" pull
     qmk git-submodule
     git submodule update --init --remote modules
+
+[group('scripts')]
+layout-options board:
+    ./scripts/via-layout-options/via-layout-options.py {{ board }}
